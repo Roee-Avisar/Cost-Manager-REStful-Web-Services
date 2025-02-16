@@ -1,148 +1,82 @@
 import sys
 import requests
 
+# כתובת השרת (עדכון כתובת ה-API)
+base_url = "http://localhost:5000"
 
-filename = input("filename=")
+# שם הקובץ לשמירת הפלט
+filename = "test_results.txt"
 
-line = "__________________________________"
-
-output = open(filename,"w")
-
+output = open(filename, "w")
 sys.stdout = output
 
-print(line)
-
-print()
-
+print("===================================")
+print("\n")
 
 print("testing getting the about")
-
 print("-------------------------")
 
 try:
+    url = f"{base_url}/api/about"
+    data = requests.get(url)
 
-  text = ""
-
-  #getting details of team manager
-
-  url = line + "/api/about/"
-
-  data = requests.get(url)
-
-  print("url="+url)
-
-  print("data.status_code="+str(data.status_code))
-
-  print(data.content)
-
-  print("data.text="+data.text)
-
-  print(data.json())
+    print("url=" + url)
+    print("data.status_code=" + str(data.status_code))
+    print(data.text)
 
 except Exception as e:
+    print("problem")
+    print(e)
 
-  print("problem")
-
-  print(e)
-
-print("")
-
-
-print()
+print("\n")
 
 print("testing getting the report - 1")
-
 print("------------------------------")
 
 try:
+    url = f"{base_url}/api/report/?id=123123&year=2025&month=2"
+    data = requests.get(url)
 
-  text = ""
-
-  #getting the report
-
-  url = line + "/api/report/?id=123123&year=2025&month=2"
-
-  data = requests.get(url)
-
-  print("url="+url)
-
-  print("data.status_code="+str(data.status_code))
-
-  print(data.content)
-
-  print("data.text="+data.text)
-
-  print(text)
+    print("url=" + url)
+    print("data.status_code=" + str(data.status_code))
+    print(data.text)
 
 except Exception as e:
+    print("problem")
+    print(e)
 
-  print("problem")
-
-  print(e)
-
-print("")
-
-
-print()
+print("\n")
 
 print("testing adding cost item")
-
 print("----------------------------------")
 
 try:
+    url = f"{base_url}/api/add"
+    data = requests.post(url, json={'userid': 123123, 'description': 'milk 9', 'category': 'food', 'sum': 8})
 
-  text = ""
-
-  url = line + "/api/add/"
-
-  data = requests.post(url,
-        json={'userid':123123, 'description':'milk 9','category':'food','sum':8})
-
-  print("url="+url)
-
-  print("data.status_code="+str(data.status_code))
-
-  print(data.content)
+    print("url=" + url)
+    print("data.status_code=" + str(data.status_code))
+    print(data.text)
 
 except Exception as e:
+    print("problem")
+    print(e)
 
-  print("problem")
-
-  print(e)
-
-print("")
-
-
-print()
+print("\n")
 
 print("testing getting the report - 2")
-
 print("------------------------------")
 
 try:
+    url = f"{base_url}/api/report/?id=123123&year=2025&month=2"
+    data = requests.get(url)
 
-  text = ""
-
-  #getting the report
-
-  url = line + "/api/report/?id=123123&year=2025&month=2"
-
-  data = requests.get(url)
-
-  print("url="+url)
-
-  print("data.status_code="+str(data.status_code))
-
-  print(data.content)
-
-  print("data.text="+data.text)
-
-  print(text)
+    print("url=" + url)
+    print("data.status_code=" + str(data.status_code))
+    print(data.text)
 
 except Exception as e:
+    print("problem")
+    print(e)
 
-  print("problem")
-
-  print(e)
-
-print("")
+print("\n")

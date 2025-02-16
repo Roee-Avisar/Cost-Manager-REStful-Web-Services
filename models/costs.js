@@ -4,11 +4,11 @@ const costSchema = new mongoose.Schema({
     description: { type: String, required: true },
     category: { 
         type: String, 
-        enum: ['food', 'health', 'housing', 'sports', 'education', 'other'], 
+        enum: ['food', 'health', 'housing', 'sport', 'education'], 
         required: true, 
         lowercase: true 
     },
-    userid: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    userid: { type: String, required: true },
     sum: { type: Number, required: true },
 }, { timestamps: true });
 
