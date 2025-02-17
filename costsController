@@ -1,0 +1,25 @@
+__________________________________
+
+testing getting the about
+-------------------------
+problem
+Invalid URL '__________________________________/api/about/': No scheme supplied. Perhaps you meant https://__________________________________/api/about/?
+
+
+testing getting the report - 1
+------------------------------
+problem
+Invalid URL '__________________________________/api/report/?id=123123&year=2025&month=2': No scheme supplied. Perhaps you meant https://__________________________________/api/report/?id=123123&year=2025&month=2?
+
+
+testing adding cost item
+----------------------------------
+problem
+Invalid URL '__________________________________/api/add/': No scheme supplied. Perhaps you meant https://__________________________________/api/add/?
+
+
+testing getting the report - 2
+------------------------------
+problem
+Invalid URL '__________________________________/api/report/?id=123123&year=2025&month=2': No scheme supplied. Perhaps you meant https://__________________________________/api/report/?id=123123&year=2025&month=2?
+
