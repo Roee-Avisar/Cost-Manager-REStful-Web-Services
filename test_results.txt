@@ -5,27 +5,27 @@ testing getting the about
 -------------------------
 url=http://localhost:5000/api/about
 data.status_code=200
-[{"first_name":"Roee","last_name":"Avisar"}]
+[{"first_name":"Daniel","last_name":"Bar Natan"},{"first_name":"Roee","last_name":"Avisar"}]
 
 
 testing getting the report - 1
 ------------------------------
 url=http://localhost:5000/api/report/?id=123123&year=2025&month=2
 data.status_code=200
-{"userid":"123123","year":2025,"month":2,"costs":{"food":[],"health":[],"housing":[],"sport":[],"education":[]}}
+{"userid":123123,"year":2025,"month":2,"costs":[{"food":[{"sum":8,"description":"milk","day":16}]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}
 
 
 testing adding cost item
 ----------------------------------
 url=http://localhost:5000/api/add
 data.status_code=201
-{"description":"milk 9","category":"food","userid":"123123","sum":8,"_id":"67b1d1741d07a9ed91a724ee","createdAt":"2025-02-16T11:52:20.550Z","updatedAt":"2025-02-16T11:52:20.550Z","__v":0}
+{"description":"milk 9","category":"food","userid":"123123","sum":8,"_id":"681ba5c1e7531ff166a20dec","createdAt":"2025-05-07T18:26:09.087Z","updatedAt":"2025-05-07T18:26:09.087Z","__v":0}
 
 
 testing getting the report - 2
 ------------------------------
 url=http://localhost:5000/api/report/?id=123123&year=2025&month=2
 data.status_code=200
-{"userid":"123123","year":2025,"month":2,"costs":{"food":[{"sum":8,"description":"milk 9","day":16}],"health":[],"housing":[],"sport":[],"education":[]}}
+{"userid":123123,"year":2025,"month":2,"costs":[{"food":[{"sum":8,"description":"milk","day":16}]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}
 
 

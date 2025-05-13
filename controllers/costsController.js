@@ -26,14 +26,19 @@ export const getMonthlyReport = async (req, res) => {
             return res.status(400).json({ error: "Missing required parameters" });
         }
 
+        const numericId = Number(id); // ודא שזה מספר
         const startDate = new Date(year, month - 1, 1);
         const endDate = new Date(year, month, 0);
 
-        const costs = await Cost.find({ userid: id, createdAt: { $gte: startDate, $lte: endDate } });
+        const costs = await Cost.find({
+            userid: numericId,
+            createdAt: { $gte: startDate, $lte: endDate }
+        });
 
-        const groupedCosts = {
-            food: [], health: [], housing: [], sport: [], education: []
-        };
+        const categories = ["food", "health", "housing", "sport", "education"];
+        const groupedCosts = {};
+
+        categories.forEach(cat => groupedCosts[cat] = []);
 
         costs.forEach(cost => {
             const costData = {
@@ -41,17 +46,18 @@ export const getMonthlyReport = async (req, res) => {
                 description: cost.description,
                 day: new Date(cost.createdAt).getDate()
             };
-
-            if (groupedCosts.hasOwnProperty(cost.category)) {
+            if (groupedCosts[cost.category]) {
                 groupedCosts[cost.category].push(costData);
             }
         });
 
+        const costsArray = categories.map(cat => ({ [cat]: groupedCosts[cat] }));
+
         res.json({
-            userid: id,
+            userid: numericId,
             year: parseInt(year),
             month: parseInt(month),
-            costs: groupedCosts
+            costs: costsArray
         });
 
     } catch (error) {
@@ -59,3 +65,4 @@ export const getMonthlyReport = async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 };
+
