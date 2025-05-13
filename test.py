@@ -1,17 +1,15 @@
 import sys
 import requests
 
-# כתובת השרת (עדכון כתובת ה-API)
-base_url = "http://localhost:5000"
+filename = input("filename=")
 
-# שם הקובץ לשמירת הפלט
-filename = "test_results.txt"
+# כתובת השרת שלך ב-Render
+base_url = "https://cost-manager-restful-web-services-4ovd.onrender.com"
 
 output = open(filename, "w")
 sys.stdout = output
 
-print("===================================")
-print("\n")
+print("===================================\n")
 
 print("testing getting the about")
 print("-------------------------")
@@ -23,13 +21,13 @@ try:
     print("url=" + url)
     print("data.status_code=" + str(data.status_code))
     print(data.text)
+    print(data.json())
 
 except Exception as e:
     print("problem")
     print(e)
 
 print("\n")
-
 print("testing getting the report - 1")
 print("------------------------------")
 
@@ -46,13 +44,17 @@ except Exception as e:
     print(e)
 
 print("\n")
-
 print("testing adding cost item")
 print("----------------------------------")
 
 try:
     url = f"{base_url}/api/add"
-    data = requests.post(url, json={'userid': 123123, 'description': 'milk 9', 'category': 'food', 'sum': 8})
+    data = requests.post(url, json={
+        'userid': "123123",
+        'description': 'milk 9',
+        'category': 'food',
+        'sum': 8
+    })
 
     print("url=" + url)
     print("data.status_code=" + str(data.status_code))
@@ -63,7 +65,6 @@ except Exception as e:
     print(e)
 
 print("\n")
-
 print("testing getting the report - 2")
 print("------------------------------")
 
