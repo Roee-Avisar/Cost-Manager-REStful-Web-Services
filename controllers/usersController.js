@@ -77,25 +77,10 @@ export const getAllUsers = async (req, res) => {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-export const getDevelopers = async (req, res) => {
-    try {
-        const developers = await User.find(
-            {
-                $or: [
-                    { first_name: "Roee", last_name: "Avisar" },
-                    { first_name: "Daniel", last_name: "Bar Natan" }
-                ]
-            },
-            { first_name: 1, last_name: 1, _id: 0 }
-        );
+export const getDevelopers = (req, res) => {
+    res.status(200).json([
+      { first_name: "Roee", last_name: "Avisar" },
+      { first_name: "Daniel", last_name: "Bar Natan" }
+    ]);
 
-        if (!developers || developers.length === 0) {
-            return res.status(404).json({ error: "No developers found" });
-        }
-
-        res.status(200).json(developers);
-    } catch (error) {
-        console.error("Error in getDevelopers:", error);
-        res.status(500).json({ error: "Server error" });
-    }
 };
